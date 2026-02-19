@@ -1,0 +1,21 @@
+# Arquivo Argo CD - descreve a aplicação e o ambiente onde ela será implantada
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: minha-app-no-cluster
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/KarolSalvador/lab-gitops-argocd.git
+    targetRevision: HEAD
+    PATH: k8s/app-exemplo
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    # Faz a automação acontecer
+    automated:
+      prune: true # se apagar no Git apaga no cluster
+      selfHeal: true # se mudar no cluster via comando o Argo corrige para que o consta no Git
