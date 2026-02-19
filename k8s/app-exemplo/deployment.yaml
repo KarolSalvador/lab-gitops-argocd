@@ -1,0 +1,22 @@
+# Arquivo IaC- inafraestrutura descrita em código, e o Kubernetes irá montar essa estrutura
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-js
+  namespace: default
+spec:
+  replicas: 2 #quantidade de instâncias do container
+  selector:
+    matchLabels:
+      app: web-node
+  template:
+    metadata:
+      labels:
+        app: web-node
+    spec:
+      containers:
+        - name: node-app
+          image: nginx:alpine
+          ports:
+            - containerPort: 80
