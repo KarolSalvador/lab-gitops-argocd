@@ -1,4 +1,5 @@
 # Arquivo Argo CD - descreve a aplicação e o ambiente onde ela será implantada
+# O Manifesto do ArgoCD conecta o GitHub ao Cluster de Kubernetes
 
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -15,7 +16,6 @@ spec:
     server: https://kubernetes.default.svc
     namespace: default
   syncPolicy:
-    # Faz a automação acontecer
     automated:
-      prune: true # se apagar no Git apaga no cluster
-      selfHeal: true # se mudar no cluster via comando o Argo corrige para que o consta no Git
+      prune: true
+      selfHeal: true
