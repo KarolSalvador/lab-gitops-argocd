@@ -6,7 +6,7 @@ metadata:
   name: app-js
   namespace: default
 spec:
-  replicas: 2 #quantidade de instâncias do container
+  replicas: 4
   selector:
     matchLabels:
       app: web-node
